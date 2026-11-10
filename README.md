@@ -78,3 +78,12 @@ npm run build
 Build dan TypeScript diverifikasi di Linux dengan Node.js 24. Skrip memakai Node/npm lintas platform, `.bat` memakai CRLF dan path Windows; eksekusi native di laptop Windows belum diuji. Lockfile disertakan. Jangan menyalin `node_modules` Linux ke Windows; gunakan `npm ci`.
 
 Tidak diperlukan `.env`, API key, Docker, WSL, database, atau akun layanan. Jangan memasukkan kredensial ke source atau folder public.
+
+
+## Editorial motion
+
+The homepage uses GSAP + ScrollTrigger for staggered typography, scroll-linked composition and portrait reveals. Motion for React handles the mobile menu and expandable expertise fields. The project collection and its seven detail pages retain their content.
+
+The mobile layout has a full-screen menu, native horizontal project scrolling and tap-to-expand skill details. Keyboard navigation, Escape-to-close and system reduced-motion preferences are supported. Animations do not replace native page scrolling.
+
+Run `npm ci` and `npm run check` to install the locked dependencies, validate TypeScript and produce the static `out/` export. Existing Windows batch scripts remain supported.

@@ -15,3 +15,7 @@ Sumber: `lamaran timotiusfns(1).pdf`, 24 halaman. Angka halaman di bawah adalah 
 Total 22 screenshot. Cover memakai screenshot pertama, dengan crop CSS untuk susunan majalah. Galeri menampilkan gambar lengkap; pembesaran memungkinkan screenshot panjang dibaca dengan scroll. Proyek tidak dilengkapi URL live karena PDF tidak memberikan URL yang terverifikasi. Tidak ada klaim stack atau hasil bisnis yang ditambahkan untuk proyek.
 
 Hero: cutout transparan hasil image generation berdasarkan portrait pada desain awal. About: crop portrait dari desain awal yang disetujui. Background contact dibuat dengan CSS; tanpa gambar remote. Font: Plus Jakarta Sans Variable dari paket Fontsource dengan lisensi OFL-1.1 (lihat FONT-LICENSE.txt).
+
+
+## Editorial redesign
+- `editorial-hero.png` and `editorial-about.png`: AI-generated portrait adaptations of the user-approved visual references, created for this portfolio redesign. They are stylized assets rather than documentary photographs.
