@@ -3,9 +3,26 @@ import { useState } from 'react';
 import { AnimatePresence, motion, useReducedMotion } from 'motion/react';
 
 const skills = [
-  { title: 'Web', tools: 'Next.js · JavaScript · TypeScript', detail: 'Antarmuka responsif untuk website dan aplikasi web.' },
-  { title: 'Backend', tools: 'REST API · Firebase', detail: 'Alur aplikasi, integrasi API, dan pengelolaan akses.' },
-  { title: 'Data', tools: 'PostgreSQL', detail: 'Struktur data yang jelas dan mudah dikembangkan.' },
+  {
+    title: 'Frontend',
+    tools: 'Next.js · React · TypeScript · Tailwind',
+    detail: 'Membangun website dan aplikasi web responsif, mulai dari struktur komponen, integrasi data, state management, sampai interaksi dan animasi. Memperhatikan aksesibilitas, performa, SEO, dan konsistensi antarmuka pada desktop maupun mobile.',
+  },
+  {
+    title: 'Backend & API',
+    tools: 'REST API · Node.js · Firebase · Zod',
+    detail: 'Merancang alur bisnis dan endpoint API dengan validasi input, error handling, autentikasi, serta otorisasi berbasis peran. Memisahkan controller, service, dan akses data agar logika aplikasi lebih mudah dipahami, diuji, dan dikembangkan.',
+  },
+  {
+    title: 'Data & System',
+    tools: 'PostgreSQL · Firestore · Data Modeling',
+    detail: 'Mendesain model data, relasi, constraint, dan query sesuai kebutuhan aplikasi. Memahami pengelolaan data transaksional, aturan akses, serta pemilihan arsitektur yang sederhana namun tetap terstruktur dan maintainable.',
+  },
+  {
+    title: 'Integration & IoT',
+    tools: 'Firebase · Cloudinary · IoT · Git',
+    detail: 'Mengintegrasikan layanan cloud, upload media, dan data realtime untuk dashboard serta monitoring perangkat. Terbiasa dengan debugging, version control, pengujian fungsional, dan persiapan deployment sebagai bagian dari alur development.',
+  },
 ];
 export function EditorialHero() {
   return <section className="editorial-hero wrap" aria-labelledby="hero-title">

@@ -43,6 +43,8 @@ export const featuredProjects = ['orochi', 'allegro', 'thaz', 'nexty-erp', 'next
 export const experiences = [
   { company: 'NextyLabs.id', role: 'CTO & Software Developer', period: 'Jan 2026 – Okt 2026',
     summary: 'Website company profile, ERP, project management, dan dashboard monitoring IoT.' },
+  { company: 'Magang · Teknisi Jaringan', role: 'Network Technician Intern', period: '2025 · Setelah KKN',
+    summary: 'Mendukung pekerjaan teknis jaringan, termasuk pemeriksaan konektivitas, pemeliharaan perangkat, dan penanganan gangguan dasar. Pengalaman ini memperkuat kemampuan troubleshooting dan koordinasi teknis di lapangan.' },
   { company: 'KKN · Boyolali', role: 'Tim Kreatif', period: 'Nov 2024 – Jan 2025',
     summary: 'Website profil desa untuk informasi potensi dan kegiatan masyarakat.' },
 ];
