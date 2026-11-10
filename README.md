@@ -52,7 +52,7 @@ src/app/                  Halaman, metadata, dan global CSS
 src/app/projects/         Index proyek dan detail statis
 src/components/           Header, cover, galeri, animasi, contact
 src/data/portfolio.ts     Seluruh data profil, proyek, pengalaman
-public/images/projects/   Screenshot asli dari PDF
+public/images/projects/   Screenshot proyek WebP dari materi pemilik
 public/images/portraits/  Aset portrait
 scripts/                  Launcher development dan preview statis
 out/                      Hasil build yang siap dilayani
@@ -62,9 +62,9 @@ Edit teks/kontak/proyek di `src/data/portfolio.ts`. Teks introduction dan About 
 
 ## Sumber konten dan aset
 
-Deskripsi proyek, pengalaman, pendidikan, dan kontak mengacu pada `lamaran timotiusfns(1).pdf` yang disediakan pemilik. Semua screenshot proyek diekstrak dari image stream PDF, lalu disimpan sebagai WebP; bukan mockup hasil generasi. Detail asal tercatat di `ASSET-SOURCES.md`.
+Deskripsi proyek, pengalaman, pendidikan, dan kontak mengacu pada `lamaran timotiusfns(1).pdf` yang disediakan pemilik. Screenshot proyek diambil dari arsip screenshot terbaru (November 2026) dan dokumen portfolio sebelumnya. Aset disimpan sebagai WebP; rincian sumber masing-masing gambar dicatat di `ASSET-SOURCES.md`.
 
-Portrait About diambil dari desain yang disetujui. Hero merupakan aset cutout hasil generasi berdasarkan portrait pada desain; bukan foto sumber resolusi penuh. Ganti di `public/images/portraits/` jika foto asli tersedia. Resolusi screenshot dibatasi resolusi gambar yang tertanam dalam PDF.
+Portrait About diambil dari desain yang disetujui. Hero merupakan aset cutout hasil generasi berdasarkan portrait pada desain; bukan foto sumber resolusi penuh. Ganti di `public/images/portraits/` jika foto asli tersedia. Resolusi screenshot mengikuti materi sumber; beberapa screenshot panjang dioptimalkan untuk menjaga ukuran aset.
 
 Dokumen lamaran lengkap tidak disertakan ke folder publik karena memuat data pribadi yang tidak diperlukan untuk portfolio.
 
