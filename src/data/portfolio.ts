@@ -17,6 +17,9 @@ export const projects: Project[] = [
   { slug: 'thaz', name: 'THAZ Decoration', category: 'Company profile',
     description: 'Website profil studio dekorasi pernikahan dengan galeri karya, pilihan venue, dan akses konsultasi.',
     images: images('thaz', 3), captions: ['Hero dan pengenalan studio', 'Homepage lengkap', 'Pilihan karya dan area venue'], sourcePages: 'Screenshot, November 2026' },
+  { slug: 'lunar-konstruksi', name: 'Lunar Konstruksi', category: 'Construction company profile',
+    description: 'Website company profile konstruksi dengan layanan, portfolio proyek, proses kerja, dan CMS admin. Dibangun dengan Next.js dan TypeScript; pengelolaan konten menggunakan Firebase Firestore serta Cloudinary untuk media.',
+    images: ['/images/projects/lunar-konstruksi-homepage.avif'], captions: ['Homepage lengkap — dari hero, layanan, dan proyek hingga footer'], sourcePages: 'Screenshot referensi desain, November 2026' },
   { slug: 'school', name: 'Portal Informasi Sekolah', category: 'School portal',
     description: 'Portal sekolah yang menampilkan profil, kegiatan, program, dan informasi terbaru dalam satu halaman.',
     images: images('school', 3), captions: ['Halaman lengkap', 'Detail antarmuka', 'Detail antarmuka'], sourcePages: '5–6' },
@@ -37,7 +40,7 @@ export const projects: Project[] = [
     images: images('nexty-workspace', 3), captions: ['Ringkasan proyek', 'Daftar proyek', 'Keuangan'], sourcePages: 'Screenshot, November 2026' },
 ];
 
-export const featuredProjects = ['orochi', 'allegro', 'thaz', 'nexty-erp', 'nexty-workspace']
+export const featuredProjects = ['orochi', 'allegro', 'thaz', 'nexty-erp', 'lunar-konstruksi']
   .map(slug => projects.find(project => project.slug === slug)!);
 
 export const experiences = [

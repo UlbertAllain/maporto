@@ -37,7 +37,7 @@ npm start
 
 - Enam section: Hero, About, Projects, Expertise, Experience, Contact.
 - Lima cover pilihan dalam komposisi editorial. Di mobile, cover dapat digeser horizontal.
-- Halaman semua proyek dan tujuh halaman detail yang diekspor statis.
+- Halaman semua proyek dan delapan halaman detail yang diekspor statis.
 - Galeri screenshot dengan next/previous, thumbnail, pembesaran, dan Escape untuk menutup.
 - Animasi morph pada bingkai portrait/panel, sliding pada pergantian screenshot, scroll reveal, dan hover.
 - `prefers-reduced-motion` mematikan animasi dan smooth scrolling.
@@ -52,7 +52,7 @@ src/app/                  Halaman, metadata, dan global CSS
 src/app/projects/         Index proyek dan detail statis
 src/components/           Header, cover, galeri, animasi, contact
 src/data/portfolio.ts     Seluruh data profil, proyek, pengalaman
-public/images/projects/   Screenshot proyek WebP dari materi pemilik
+public/images/projects/   Screenshot proyek WebP/AVIF dari materi pemilik
 public/images/portraits/  Aset portrait
 scripts/                  Launcher development dan preview statis
 out/                      Hasil build yang siap dilayani
@@ -62,7 +62,7 @@ Edit teks/kontak/proyek di `src/data/portfolio.ts`. Teks introduction dan About 
 
 ## Sumber konten dan aset
 
-Deskripsi proyek, pengalaman, pendidikan, dan kontak mengacu pada `lamaran timotiusfns(1).pdf` yang disediakan pemilik. Screenshot proyek diambil dari arsip screenshot terbaru (November 2026) dan dokumen portfolio sebelumnya. Aset disimpan sebagai WebP; rincian sumber masing-masing gambar dicatat di `ASSET-SOURCES.md`.
+Deskripsi proyek, pengalaman, pendidikan, dan kontak mengacu pada `lamaran timotiusfns(1).pdf` yang disediakan pemilik. Screenshot proyek diambil dari arsip screenshot terbaru (November 2026) dan dokumen portfolio sebelumnya. Aset disimpan sebagai WebP dan AVIF; rincian sumber masing-masing gambar dicatat di `ASSET-SOURCES.md`.
 
 Portrait About diambil dari desain yang disetujui. Hero merupakan aset cutout hasil generasi berdasarkan portrait pada desain; bukan foto sumber resolusi penuh. Ganti di `public/images/portraits/` jika foto asli tersedia. Resolusi screenshot mengikuti materi sumber; beberapa screenshot panjang dioptimalkan untuk menjaga ukuran aset.
 
@@ -82,7 +82,7 @@ Tidak diperlukan `.env`, API key, Docker, WSL, database, atau akun layanan. Jang
 
 ## Editorial motion
 
-The homepage uses GSAP + ScrollTrigger for staggered typography, scroll-linked composition and portrait reveals. Motion for React handles the mobile menu and expandable expertise fields. The project collection and its seven detail pages retain their content.
+The homepage uses GSAP + ScrollTrigger for staggered typography, scroll-linked composition and portrait reveals. Motion for React handles the mobile menu and expandable expertise fields. The project collection and its eight detail pages retain their content.
 
 The mobile layout has a full-screen menu, native horizontal project scrolling and tap-to-expand skill details. Keyboard navigation, Escape-to-close and system reduced-motion preferences are supported. Animations do not replace native page scrolling.
 
