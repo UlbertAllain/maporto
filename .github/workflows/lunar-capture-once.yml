@@ -1,0 +1,82 @@
+name: Capture Lunar Screenshots Once
+on:
+  push:
+    paths:
+      - .github/workflows/lunar-capture-once.yml
+permissions:
+  contents: write
+jobs:
+  capture:
+    if: github.ref == 'refs/heads/main'
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Install screenshot tooling
+        run: |
+          mkdir -p "$RUNNER_TEMP/lunar"
+          npm install --prefix "$RUNNER_TEMP/lunar" --no-audit --no-fund playwright sharp
+          "$RUNNER_TEMP/lunar/node_modules/.bin/playwright" install --with-deps chromium
+      - name: Capture live website screenshots
+        env:
+          TARGET: https://lunar-konstruksi.vercel.app/
+        run: |
+          node <<'JS'
+          const fs=require('node:fs'), path=require('node:path'), assert=require('node:assert/strict');
+          const mod=path.join(process.env.RUNNER_TEMP,'lunar','node_modules');
+          const {chromium}=require(path.join(mod,'playwright'));
+          const sharp=require(path.join(mod,'sharp'));
+          const sleep=ms=>new Promise(r=>setTimeout(r,ms));
+          async function ready(page){
+            const response=await page.goto(process.env.TARGET,{waitUntil:'domcontentloaded',timeout:90000});
+            assert(response && response.status()<400,'Target returned an error');
+            await page.waitForTimeout(2400);
+            const body=await page.locator('body').innerText();
+            assert(/Lunar\s*Konstruksi/i.test(body) && !/Vercel Security Checkpoint/i.test(body),'Screenshot target is not the published site');
+            await page.evaluate(()=>document.querySelectorAll('img[loading="lazy"]').forEach(el=>el.loading='eager'));
+            const h=await page.evaluate(()=>document.documentElement.scrollHeight);
+            for(let y=0;y<Math.min(h,16000);y+=650){await page.evaluate(v=>window.scrollTo(0,v),y);await sleep(150)}
+            await page.evaluate(()=>window.scrollTo(0,0));
+            await page.waitForTimeout(1100);
+            await page.evaluate(async()=>Promise.all(Array.from(document.images,img=>img.decode().catch(()=>{}))));
+            await page.addStyleTag({content:'*,*::before,*::after{animation-duration:0s!important;transition-duration:0s!important;caret-color:transparent!important}'});
+          }
+          (async()=>{
+            const browser=await chromium.launch({headless:true,args:['--no-sandbox']});
+            const desktop=await browser.newPage({viewport:{width:1440,height:960},reducedMotion:'reduce'});
+            await ready(desktop);
+            const hero=await desktop.screenshot({type:'png'});
+            const full=await desktop.screenshot({type:'png',fullPage:true});
+            const mobile=await browser.newPage({viewport:{width:390,height:844},deviceScaleFactor:2,isMobile:true,hasTouch:true,reducedMotion:'reduce'});
+            await ready(mobile);
+            const small=await mobile.screenshot({type:'png',fullPage:true});
+            await browser.close();
+            const directory='public/images/projects';
+            fs.mkdirSync(directory,{recursive:true});
+            for(const [number,buffer,quality] of [[1,hero,90],[2,full,86],[3,small,85]]){
+              const output=path.join(directory,'lunar-konstruksi-'+number+'.webp');
+              await sharp(buffer).webp({quality,effort:6}).toFile(output);
+              const meta=await sharp(output).metadata();
+              assert(meta.width>=390&&meta.height>=840,'Invalid screenshot dimensions');
+              console.log(output,meta.width,meta.height,fs.statSync(output).size);
+            }
+            const dataFile='src/data/portfolio.ts';
+            const before="images: ['/images/projects/lunar-konstruksi-homepage.avif'], captions: ['Homepage lengkap — dari hero, layanan, dan proyek hingga footer'], sourcePages: 'Screenshot referensi desain, November 2026'";
+            const after="images: images('lunar-konstruksi', 3), captions: ['Hero website Lunar Konstruksi', 'Homepage lengkap dari website live', 'Tampilan mobile website live'], sourcePages: 'Screenshot live dari lunar-konstruksi.vercel.app, November 2026'";
+            const data=fs.readFileSync(dataFile,'utf8');
+            assert(data.includes(before),'Portfolio data no longer matches expected content');
+            fs.writeFileSync(dataFile,data.replace(before,after));
+          })().catch(e=>{console.error(e);process.exit(1)});
+          JS
+      - name: Commit screenshots and remove temporary workflow
+        run: |
+          git rm public/images/projects/lunar-konstruksi-homepage.avif
+          git rm .github/workflows/lunar-capture-once.yml
+          git add public/images/projects/lunar-konstruksi-1.webp public/images/projects/lunar-konstruksi-2.webp public/images/projects/lunar-konstruksi-3.webp src/data/portfolio.ts
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git commit -m "assets: capture Lunar Konstruksi directly from live website"
+          git push origin HEAD:main
